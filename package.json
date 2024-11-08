@@ -1,0 +1,44 @@
+{
+  "name": "ethan-bot-music",
+  "version": "1.0.0",
+  "description": "The greatest Discord bot.",
+  "license": "AGPL-3.0-only",
+  "author": {
+    "name": "darksaid98",
+    "url": "https://github.com/darksaid98"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milkdrinkers/ethan-bot-music"
+  },
+  "bugs": {
+    "url": "https://github.com/milkdrinkers/ethan-bot-music/issues"
+  },
+  "type": "module",
+  "module": "dist/shard.bot.js",
+  "scripts": {
+    "start": "bun run ./src/index.bot.ts",
+    "start-shard": "bun run ./src/shard.bot.ts",
+    "debug": "bun --inspect-wait=localhost:4000 ./src/shard.bot.ts",
+    "compile-linux-x64": "bun build --compile --minify --sourcemap --bytecode --target=bun-linux-x64 ./src/shard.bot.ts --outfile ehtan",
+    "compile-linux-arm64": "bun build --compile --minify --sourcemap --bytecode --target=bun-linux-arm64 ./src/shard.bot.ts --outfile ehtan",
+    "compile-win-x64": "bun build --compile --minify --sourcemap --bytecode --target=bun-windows-x64 ./src/shard.bot.ts --outfile ehtan"
+  },
+  "dependencies": {
+    "@discordx/pagination": "^3.5.5",
+    "@discordx/utilities": "^7.0.3",
+    "@sentry/bun": "^8.37.1",
+    "discord.js": "^14.16.3",
+    "discordx": "^11.12.2",
+    "i18next": "^23.16.5",
+    "i18next-fs-backend": "^2.3.2",
+    "pino": "^9.5.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "pino-pretty": "^12.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.2"
+  }
+}

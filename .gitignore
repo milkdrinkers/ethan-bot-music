@@ -175,8 +175,5 @@ dist
 .DS_Store
 
 # Misc
-.env
-.env.production
-.env.development
-.env.test
-.env.local
+/.env*
+!/.env.example
