@@ -72,9 +72,21 @@ export default class Bot {
             });
         });
 
+        // Discord Player FFmpeg check
+        const { exitCode } = await $`ffmpeg -version`
+            .nothrow()
+            .quiet();
 
+        if (exitCode !== 0) {
+            const logger = loggerService.child({
+                name: 'main',
+                module: 'main',
+                shardId: 'main',
             });
 
+            logger.error('Ethan requires FFmpeg but is not installed on your system.\nInstall FFmpeg from the website https://ffmpeg.org/download.html and try again.\nIf on Windows, ensure FFmpeg is abailable on your PATH.')
+            process.exit(1);
+        }
 
         // Spawn shard
         this.shardManager.spawn({
