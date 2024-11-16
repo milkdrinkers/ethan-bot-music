@@ -25,14 +25,14 @@ export default abstract class Example {
         // Do something!
         await interaction.deferReply(); // It is vital to defer the reply if response will take more than a few seconds
         
-        
-        await interaction.editReply({
+        await interaction.followUp({
             embeds: [
                 {
                     description: 'Lorem ipsum dolor sit amet...',
                     color: 0xb84e44
                 }
             ],
+            ephemeral: true
         })
     }
 }
