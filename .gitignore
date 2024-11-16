@@ -177,3 +177,6 @@ dist
 # Misc
 /.env*
 !/.env.example
+
+build
+dist

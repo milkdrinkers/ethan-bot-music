@@ -1,0 +1,36 @@
+FROM oven/bun:debian AS build
+
+WORKDIR /bot
+
+# Copy build files
+COPY bun.lockb . 
+COPY tsconfig.json . 
+COPY package.json . 
+COPY bunfig.toml . 
+
+# Install dependencies
+RUN bun install --frozen-lockfile
+# RUN bun install --frozen-lockfile --production
+
+# Source files
+COPY src ./src 
+COPY locales ./locales 
+
+# Build project
+# RUN bun build ./src/index.bot.ts --outdir build --target bun --sourcemap --splitting --minify
+
+# Compile executable named ethan 
+RUN bun build ./src/index.bot.ts --outfile ethan --target bun --sourcemap --minify --compile
+
+FROM debian:12
+
+# Install FFmpeg
+RUN apt update \
+    && apt install -y --no-install-recommends ffmpeg
+
+WORKDIR /bot
+
+COPY --from=build /bot/ethan /bot/ethan
+
+# Run executable
+CMD [ "/bot/ethan" ]
